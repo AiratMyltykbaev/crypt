@@ -1,7 +1,7 @@
 surname = 'Мылтыкбаев'
 name = 'Айрат'
 sec = 'Рустамович'
-Tablersa = {0, 1, 13, 4, 6, 7, 5, 14, 4,
+Tablersa = { 1, 13, 4, 6, 7, 5, 14, 4,
     15, 11, 11, 12, 13, 8, 11, 10,
     13, 4, 10, 7, 10, 1, 4, 9,
     0, 1, 0, 1, 1, 13, 12, 2,
@@ -41,17 +41,17 @@ Tablersa = {0, 1, 13, 4, 6, 7, 5, 14, 4,
 def gost(sur, secname):
     massur = []
     for i in sur[:8:]:
-        massur.append(int(bin(i)[2::]))
+        massur.append(bin(i)[2::])
     massur = (''.join(map(str, massur)))
-    l0 = bin(int(massur[:32:])) #первые 32. Но я не понимаю, как преобразовать в bin без потерь.
-    r0 = bin(int(massur[32::])) #вторые 32. Сначала в инт, потмо в бин и итого числа другие. через bitarray надо.
-    print(len(l0), len(r0))
+    l0 = (massur[:32:]) #первые 32.
+    r0 = (massur[32::]) #вторые 32.
+    print((l0), (r0))
     massec = []
     for i in secname[:4:]:
-        massec.append(int(bin(i)[2::]))
-    x0 = bin(int((''.join(map(str, massec)))))
+        massec.append(bin(i)[2::])
+    x0 = (''.join(map(str, massec)))
     print(x0)
-    print((r0 & x0) % (2 ** 32)) # тут якобы сложение по 2^32
+#    print((r0 & x0) % (2 ** 32)) # тут якобы сложение по 2^32
     #return mas
 
 print(gost(surname.encode('cp1251'), sec.encode('cp1251')))
